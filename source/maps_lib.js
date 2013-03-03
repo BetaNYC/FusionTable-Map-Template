@@ -18,23 +18,23 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
+  fusionTableId:      "1BNc5hv5vnEvjV9_gII-le7oZ4edAAN3Er9J_ORc",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
-  googleApiKey:       "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
+  googleApiKey:       "AIzaSyCU6qtu0m7YUwNakVUYuncIegGpFgG0xGY",
 
   //name of the location column in your Fusion Table.
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
-  locationColumn:     "geometry",
+  locationColumn:     "'Full Address'",
 
-  map_centroid:       new google.maps.LatLng(41.8781136, -87.66677856445312), //center that your map defaults to
-  locationScope:      "chicago",      //geographical area appended to all address searches
+  map_centroid:       new google.maps.LatLng(40.714623, -74.006605), //center that your map defaults to
+  locationScope:      "New York",      //geographical area appended to all address searches
   recordName:         "result",       //for showing number of results
   recordNamePlural:   "results",
 
-  searchRadius:       805,            //in meters ~ 1/2 mile
+  searchRadius:       6440,            //in meters ~ 4 mile
   defaultZoom:        11,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage: 'http://derekeder.com/images/icons/blue-pushpin.png',
   currentPinpoint: null,
@@ -71,7 +71,8 @@ var MapsLib = {
 
     //run the default search
     MapsLib.doSearch();
-  },
+},
+ 	
 
   doSearch: function(location) {
     MapsLib.clearSearch();
@@ -118,7 +119,13 @@ var MapsLib = {
     else { //search without geocoding callback
       MapsLib.submitSearch(whereClause, map);
     }
-  },
+  
+var type_column = "'type'";
+var tempWhereClause = [];
+if ( $("#cbType1").is(':checked')) tempWhereClause.push("'Safe Start Bank Account'");
+if ( $("#cbType2").is(':checked')) tempWhereClause.push("'Financial Empowerment Center'");
+whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join('\',\'') + "')";
+},
 
   submitSearch: function(whereClause, map, location) {
     //get using all filters
@@ -233,6 +240,7 @@ var MapsLib = {
         $( "#result_count" ).html(MapsLib.addCommas(numRows) + " " + name + " found");
       });
     $( "#result_count" ).fadeIn();
+    
   },
 
   addCommas: function(nStr) {
