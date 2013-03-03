@@ -71,8 +71,7 @@ var MapsLib = {
 
     //run the default search
     MapsLib.doSearch();
-},
- 	
+  },
 
   doSearch: function(location) {
     MapsLib.clearSearch();
@@ -119,13 +118,7 @@ var MapsLib = {
     else { //search without geocoding callback
       MapsLib.submitSearch(whereClause, map);
     }
-  
-var type_column = "'type'";
-var tempWhereClause = [];
-if ( $("#cbType1").is(':checked')) tempWhereClause.push("'Safe Start Bank Account'");
-if ( $("#cbType2").is(':checked')) tempWhereClause.push("'Financial Empowerment Center'");
-whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join('\',\'') + "')";
-},
+  },
 
   submitSearch: function(whereClause, map, location) {
     //get using all filters
@@ -240,7 +233,6 @@ whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join('\',\'') 
         $( "#result_count" ).html(MapsLib.addCommas(numRows) + " " + name + " found");
       });
     $( "#result_count" ).fadeIn();
-    
   },
 
   addCommas: function(nStr) {
