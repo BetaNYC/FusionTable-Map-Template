@@ -1,0 +1,106 @@
+// LOOK AND FEEL
+
+<div class="googft-info-window"
+    style="font-family: sans-serif; width: 330px; height: 20em; overflow-y: auto;">
+  <img src="{URL cp lateral}" 
+       style="width: 150px; vertical-align: top; margin-right: .5em" />
+  <img src="{URL adult}" 
+       style="width: 150px; vertical-align: top" />
+  <h2 style="color: brown">{herbivore species}</h2> 
+  <p>Caterpillar found feeding on host plant
+     <em>{host plant species}</em>,
+      {host plant family} in the {primary eco},{year}.</p>
+  <p>See specimen record {voucher} at 
+      <a href="http://janzen.sas.upenn.edu/">
+      Caterpillars, pupae, butterflies and moths of the A.C.G.
+      </a>
+  </p>
+</div>
+
+
+// Implmented CSS
+
+
+<div class="googft-info-window"
+    style="font-family: sans-serif; width: 330px; height: 20em; overflow-y: auto;">
+  <p><h2 style="color: brown"><a href='{Host Location Website}' target='_blank'>{Provider}</a></h2>
+  <b><h3 style="color: black">Primary Service: <em>{Service}</em></h3>
+    <b>Additional Services:</b> <em><a href='{Host Location Website}' target='_blank'>{Additional Services}</a></em><br></p>
+<p><b>Location Name:</b> {Institution}<br>
+<b>Address:</b> {Full Address}<br>
+<b>Days Open:</b> {Days Open}<br>
+<b>Hours Open:</b> {Hours Open}<br></p>
+<p><b>Languages:</b> {Languages}<br>
+<b>Phone:</b> {Phone}<br>
+<b>Host Location Website:</b> <a href='{Host Location Website}' target='_blank'>{Host Location Website}</a><br>
+</P>
+</div>
+
+
+// SHAREABLE URL 
+
+https://www.google.com/fusiontables/DataSource?docid=1BNc5hv5vnEvjV9_gII-le7oZ4edAAN3Er9J_ORc
+
+
+// Fusion Tables - Descriptions 
+
+Table name - "NYC OFE Services Locations - Beta"
+Allow export - Yes
+Attribute data to - nyc office of financial empowerment
+Attribution page link - http://www.nyc.gov/html/ofe/html/home/home.shtml
+Description - "Something along the lines that this was put together at the #MoneyHack weekend."
+
+About text...
+This is a listing of all services offered by NYC's Office of Financial Empowerment. Here you will find locations that provide advice and banking locations that offer Safe Start bank accounts. Maybe a link to read more »
+
+// Source/maps_lib.js
+
+* fusionTableId = 1BNc5hv5vnEvjV9_gII-le7oZ4edAAN3Er9J_ORc
+* googleApiKey = AIzaSyCU6qtu0m7YUwNakVUYuncIegGpFgG0xGY
+*   locationColumn = "'Full Address'"
+* map_centroid to the lat/long you want your map to center on
+	latitude and longitude of New York : 40.714623,-74.006605 
+	latitude :40.714623 
+	longitude : -74.006605 
+* locationScope = New York, NY
+* recordName and recordNamePlural to the name of the items in your Fusion Table
+
+// Filters
+ * Service
+ * Language
+ * Days Open
+ * Borough
+ * Additional Services
+ 
+ 
+// Filter - Service
+ <h4>
+  Services Provide
+</h4>
+<ul class='inputs-list unstyled'>
+  <li>
+    <label class='checkbox inline'>
+      <input type='checkbox' id='cbType1' />
+      <span class='filter-box filter-blue'></span>
+      Safe Start Bank Account
+    </label>
+  </li>
+  <li>
+    <label class='checkbox inline'>
+      <input type='checkbox' id='cbType2' />
+      <span class='filter-box filter-green'></span>
+      Financial Empowerment Center
+    </label>
+  </li>
+</ul>
+
+var type_column = "'type'";
+var tempWhereClause = [];
+if ( $("#cbType1").is(':checked')) tempWhereClause.push("'Safe Start Bank Account'");
+if ( $("#cbType2").is(':checked')) tempWhereClause.push("'Financial Empowerment Center'");
+whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join('\',\'') + "')";
+
+// Supporting google Docs
+
+About - https://docs.google.com/document/d/1nB4RxJ-Ing8UTFg4ERPpicWJUOsn4y6D5lP7o42j0CU/edit?usp=sharing
+Spreadsheet of locations - https://docs.google.com/spreadsheet/ccc?key=0AiCaCfWltKOudFFGTU5EQUZHVUxPWXc4OE1BQ053LUE&usp=sharing
