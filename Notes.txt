@@ -1,4 +1,4 @@
-// Implmented CSS
+// Implemented CSS
 
 Service And Location
 
@@ -17,7 +17,7 @@ Service And Location
 <b>Location Phone:</b> {phoneHost}<br>
 <b>Service Manager Name:</b> {nameServiceManager}<br>
 <b>Service Manager's Number:</b> {phoneServiceManager}<br>
-<b>Addtional Services Offered:</b> <em>{Services_Additional}</em><br>
+<b>Additional Services Offered:</b> <em>{Services_Additional}</em><br>
 </P>
 </div>
 
